@@ -1,13 +1,18 @@
 from dotenv import load_dotenv
 from langchain_openai import OpenAI
+from langchain_core.prompts import PromptTemplate
 from colorama import Fore
 
 load_dotenv()
+llm = OpenAI()
+prompt_template = PromptTemplate.from_template("tell me a joke about a {topic}?")
 
 
 def generate(text):
     """ generate text based on the input """
-    pass
+    prompt = prompt_template.format(topic=text)
+    print(prompt)
+    return llm.invoke(text)
 
 
 def start():
